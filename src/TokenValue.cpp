@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "TokenValue.h"
 #include <sstream>
 

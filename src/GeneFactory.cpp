@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "GeneFactory.h"
 #include "TokenValue.h"
 

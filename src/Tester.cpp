@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "Tester.h"
 #include "TokenOperator.h"
 #include "ExpressionEvaluator.h"

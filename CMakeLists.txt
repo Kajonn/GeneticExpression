@@ -6,7 +6,7 @@ set( sources
 	src/ChromosomeFactory.cpp
 	src/ChromosomeFactory.h
 	src/Chromosome.h
-	src/ConsoleApplication1.cpp
+	src/main.cpp
 	src/ExpressionEvaluator.cpp
 	src/ExpressionEvaluator.h
 	src/ExpressionToken.cpp

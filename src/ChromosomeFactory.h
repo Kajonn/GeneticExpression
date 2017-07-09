@@ -1,6 +1,5 @@
 #pragma once
 
-#include "stdafx.h"
 #include "Chromosome.h"
 
 class ChromosomeFactory

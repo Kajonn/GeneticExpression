@@ -1,10 +1,10 @@
-#include "stdafx.h"
 #include "GeneticExpressionGenerator.h"
 
 #include "ChromosomeFactory.h"
 #include "GeneFactory.h"
 #include <algorithm>
 #include <chrono>
+#include <iostream>
 
 #define PRINT_ELAPSED(T1, T2) \
 	time_span = duration_cast<duration<double>>(T2 - T1); \
