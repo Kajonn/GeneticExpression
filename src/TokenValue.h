@@ -6,10 +6,12 @@ class TokenValue :
 public:
 	TokenValue(double value);
 	~TokenValue();
-	double evaluate();
+	double evaluate() const;
 	std::string toString() const;
 protected:
 	const double _value;
-	ExpressionTokenPtr clone() const { return ExpressionTokenPtr(new TokenValue(_value)); };
+	std::unique_ptr<ExpressionToken> clone() const {
+		return std::unique_ptr<ExpressionToken>(new TokenValue(_value));
+	};
 };
 

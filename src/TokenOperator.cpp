@@ -10,20 +10,8 @@ TokenOperator::~TokenOperator()
 {
 }
 
-void TokenOperator::addLeftToken(ExpressionTokenPtr token)
-{
-	_leftToken = token;
 
-}
-
-void TokenOperator::addRightToken(ExpressionTokenPtr token)
-{
-	_rightToken = token;
-
-}
-
-
-double TokenOperator::evaluate()
+double TokenOperator::evaluate() const
 {
 	double right = _rightToken?_rightToken->evaluate():0;
 	double left = _leftToken ? _leftToken->evaluate() : 0;

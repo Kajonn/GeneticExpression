@@ -22,6 +22,10 @@ class GeneticExpressionGenerator
 public:
 	GeneticExpressionGenerator();
 	~GeneticExpressionGenerator();
-	ExpressionEvaluatorPtr generateExpression(double target, unsigned int maxGenerations, unsigned int individualsInGeneration, unsigned int chromosomeSize, GeneFactory& geneFactory);
+	ExpressionEvaluatorPtr generateExpression(double target,
+			unsigned int maxGenerations,
+			unsigned int individualsInGeneration,
+			unsigned int chromosomeSize,
+			GeneFactory& geneFactory);
 };
 

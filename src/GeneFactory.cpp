@@ -14,7 +14,7 @@ GeneFactory::~GeneFactory()
 }
 
 
-GenePtr GeneFactory::addGene(ExpressionTokenPtr token)
+GenePtr GeneFactory::addGene(const ExpressionToken* token)
 {
 	//Generate code
 

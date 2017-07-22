@@ -16,7 +16,7 @@ void ExpressionEvaluator::addToken(const ExpressionToken &token) {
 }
 
 void ExpressionEvaluator::endOperator(std::vector<TokenEvaluationState> &operatorStack) {
-	ExpressionTokenPtr token = operatorStack.back().token;
+	const ExpressionToken* token = operatorStack.back().token;
 	operatorStack.pop_back();
 
 	if (!operatorStack.empty()) {
@@ -37,16 +37,17 @@ void ExpressionEvaluator::endOperator(std::vector<TokenEvaluationState> &operato
 
 double ExpressionEvaluator::evaluate(bool log) {
 	bool syntaxError = false;
-	ExpressionTokenPtr root;
+	ExpressionToken* root = NULL;
 	std::vector<TokenEvaluationState> operatorStack;
 	
-	for (auto token : _tokens)
+	for (auto &token : _tokens)
 	{
-		switch (token->getType())
+		ExpressionToken* tokenPtr = token.get();
+		switch (tokenPtr->getType())
 		{
 		case ExpressionToken::Operator:
 			{
-				operatorStack.push_back(TokenEvaluationState(token, false));
+				operatorStack.push_back(TokenEvaluationState(tokenPtr, false));
 			}
 			break;
 		case ExpressionToken::Value:
@@ -55,11 +56,11 @@ double ExpressionEvaluator::evaluate(bool log) {
 
 				TokenEvaluationState &opState = operatorStack.back();
 				if (!opState.leftFilled) {
-					opState.token->addLeftToken(token);
+					opState.token->addLeftToken(tokenPtr);
 					opState.leftFilled = true;
 				} else {
 
-					opState.token->addRightToken(token);
+					opState.token->addRightToken(tokenPtr);
 
 					endOperator(operatorStack);
 
@@ -77,7 +78,7 @@ double ExpressionEvaluator::evaluate(bool log) {
 		}
 
 		if (!root) {
-			root = token;
+			root = tokenPtr;
 		}
 	}
 
@@ -86,7 +87,7 @@ double ExpressionEvaluator::evaluate(bool log) {
 	}
 
 	if (!syntaxError && root) {
-		double result = root->evaluate();
+		const double result = root->evaluate();
 		if (log) {
 			std::cout << root->toString() << " = "<< result << std::endl;
 		}

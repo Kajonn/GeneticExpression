@@ -6,14 +6,12 @@ class TokenOperator :
 public:
 	TokenOperator(char op);
 	~TokenOperator();
-	void addLeftToken(ExpressionTokenPtr token);
-	void addRightToken(ExpressionTokenPtr token);
 protected:
 	std::string toString() const;
 	const char _tokenOperator;
-	ExpressionTokenPtr _rightToken;
-	ExpressionTokenPtr _leftToken;
 public:
-	ExpressionTokenPtr clone() const { return ExpressionTokenPtr(new TokenOperator(_tokenOperator)); };
-	double evaluate();
+	std::unique_ptr<ExpressionToken> clone() const {
+		return std::unique_ptr<ExpressionToken>(new TokenOperator(_tokenOperator));
+	};
+	double evaluate() const;
 };

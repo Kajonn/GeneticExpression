@@ -13,7 +13,7 @@ Chromosome::~Chromosome()
 {
 }
 
-std::vector<int> Chromosome::decode() const 
+std::vector<int> Chromosome::decode() const
 {
 	if (_changed) {
 
@@ -47,8 +47,6 @@ std::vector<int> Chromosome::decode() const
 
 Chromosome Chromosome::combine(const Chromosome &chromosome) const {
 
-	//ChromosomePtr newChromosome(new Chromosome(_geneSize));
-	//Chromosome* newChromosomeP = newChromosome.get();
 	Chromosome newChromosome(*this);
 	newChromosome._changed = true;
 

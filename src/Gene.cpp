@@ -1,7 +1,7 @@
 #include "Gene.h"
 
 
-Gene::Gene(int code, ExpressionTokenPtr expression) :
+Gene::Gene(int code, const ExpressionToken* expression) :
 _code(code),
 _expression(expression)
 {

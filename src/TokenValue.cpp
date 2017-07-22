@@ -11,7 +11,7 @@ TokenValue::~TokenValue()
 }
 
 
-double TokenValue::evaluate()
+double TokenValue::evaluate() const
 {
 	return _value;
 }

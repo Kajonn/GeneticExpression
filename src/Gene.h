@@ -7,9 +7,9 @@ class Gene
 {
 private:
 	int _code;
-	ExpressionTokenPtr _expression;
+	const ExpressionToken* _expression;
 public:
-	Gene(int code, ExpressionTokenPtr expression);
+	Gene(int code, const ExpressionToken* expression);
 	~Gene();
 	int getCode() const;
 	const ExpressionToken& getExpression() const;

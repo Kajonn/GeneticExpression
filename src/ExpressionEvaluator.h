@@ -7,11 +7,11 @@ typedef std::shared_ptr<ExpressionEvaluator> ExpressionEvaluatorPtr;
 
 class ExpressionEvaluator
 {
-	std::vector<ExpressionTokenPtr> _tokens;
+	std::vector<std::unique_ptr<ExpressionToken> > _tokens;
 	struct TokenEvaluationState{ 
-		ExpressionTokenPtr token;
+		ExpressionToken* token;
 		bool leftFilled;
-		TokenEvaluationState(ExpressionTokenPtr token_,
+		TokenEvaluationState(ExpressionToken* token_,
 			bool leftFilled_) : token(token_), leftFilled(leftFilled_) {}
 	};
 	void endOperator(std::vector<TokenEvaluationState> &operatorStack);

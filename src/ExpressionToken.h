@@ -4,11 +4,6 @@
 #include <ostream>
 #include <memory>
 
-class ExpressionToken;
-typedef std::shared_ptr<ExpressionToken> ExpressionTokenPtr;
-
-
-
 class ExpressionToken
 {
 public:
@@ -20,15 +15,17 @@ public:
 	};
 	ExpressionToken(TokenType type);
 	virtual ~ExpressionToken();
-	virtual void addLeftToken(ExpressionTokenPtr token) {};
-	virtual void addRightToken(ExpressionTokenPtr token) {};
+	void addLeftToken(ExpressionToken const * token);
+	void addRightToken(ExpressionToken const * token);
 protected:
 	const TokenType _type;
+	ExpressionToken const * _rightToken;
+	ExpressionToken const * _leftToken;
 public:
 	virtual std::string toString() const = 0;
 	TokenType getType() const { return _type; };
-	virtual double evaluate() = 0;
-	virtual ExpressionTokenPtr clone() const = 0;
+	virtual double evaluate() const = 0;
+	virtual std::unique_ptr<ExpressionToken> clone() const = 0;
 	
 	friend std::ostream& operator<<(std::ostream &os, const ExpressionToken& token);
 };

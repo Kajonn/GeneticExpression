@@ -24,15 +24,24 @@ void GenAlgRunner::run() {
 	GeneFactory geneFactory(geneSize);
 
 	std::vector<GenePtr> geneValues;
+	std::vector<std::shared_ptr<TokenValue>> tokensop;
 
-	GenePtr plus = geneFactory.addGene(ExpressionTokenPtr(new TokenOperator('+')));
-	GenePtr minus = geneFactory.addGene(ExpressionTokenPtr(new TokenOperator('-')));
-	GenePtr div = geneFactory.addGene(ExpressionTokenPtr(new TokenOperator('/')));
-	GenePtr mul = geneFactory.addGene(ExpressionTokenPtr(new TokenOperator('*')));
+	std::unique_ptr<TokenOperator> plusOp(new TokenOperator('+'));
+	std::unique_ptr<TokenOperator> minusOp(new TokenOperator('-'));
+	std::unique_ptr<TokenOperator> divOp(new TokenOperator('/'));
+	std::unique_ptr<TokenOperator> mulOp(new TokenOperator('*'));
+
+	GenePtr plus = geneFactory.addGene(plusOp.get());
+	GenePtr minus = geneFactory.addGene(minusOp.get());
+	GenePtr div = geneFactory.addGene(divOp.get());
+	GenePtr mul = geneFactory.addGene(mulOp.get());
+
 
 	for (size_t i = 0; i < tokens; i++)
 	{
-		GenePtr newGene = geneFactory.addGene(ExpressionTokenPtr(new TokenValue(i)));
+		std::shared_ptr<TokenValue>valueToken(new TokenValue(i));
+		tokensop.push_back(valueToken);
+		GenePtr newGene = geneFactory.addGene(valueToken.get());
 		geneValues.push_back(newGene);
 	}
 

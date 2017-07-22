@@ -278,3 +278,6 @@ __pycache__/
 # !tools/packages.config
 
 build/
+.project
+.cproject
+.settings/
